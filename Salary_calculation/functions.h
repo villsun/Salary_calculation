@@ -9,6 +9,7 @@ struct Parameters
 	double hourly_wage;
 	double supplement_in_weekend;
 	double supplement_in_evening;
+	double tax;
 };
 
 struct Day
@@ -26,4 +27,7 @@ private:
 	Parameters parameters_in_file;
 	vector<Day> array_day;
 public:
+	Job();
+	void Show_Parameters();
+	void Show_Job();
 };
