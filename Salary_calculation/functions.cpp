@@ -10,6 +10,7 @@
 Job::Job()
 {
 	string path_parameters = "F:\\My programs in C++\\Salary_calculation\\Parameters.txt";
+	/*cout << "Enter the path where you save the settings:\n";*/
 	/*cin >> path_parameters;*/ // Тут можна зробити щоб користувач вводив файл параметрів
 	ifstream fin_parameters;
 	fin_parameters.open(path_parameters);
@@ -31,6 +32,7 @@ Job::Job()
 	fin_parameters.close();
 
 	string path_work = "F:\\My programs in C++\\Salary_calculation\\Work.txt";
+	//cout << "Enter the path where you save the work file:\n";
 	/*cin >> path_work;*/ // Тут можна зробити щоб користувач вводив файл роботи
 	ifstream fin_work;
 	fin_work.open(path_work);
@@ -72,9 +74,13 @@ void Job::Show_Parameters()
 
 void Job::Show_Job()
 {
-	for (int i = 0; i < array_day.size(); i++)
+	/*for (int i = 0; i < array_day.size(); i++)
 	{
 		cout << array_day[i].date << ' ' << array_day[i].start_work << ' ' << array_day[i].end_work << ' ' << array_day[i].number_hours_at_work << ' ' << array_day[i].earned_in_day << endl;
+	}*/
+	for (const auto& element : array_day)
+	{
+		cout << element.date << ' ' << element.start_work << ' ' << element.end_work << ' ' << element.number_hours_at_work << ' ' << element.earned_in_day << '\n';
 	}
 }
 
@@ -109,7 +115,6 @@ bool Job::is_Weekend(const string &date)
 
 	return (w_day == 0 || w_day == 6);
 }
-
 
 
 void Job::Add_Day()
@@ -173,7 +178,8 @@ void Job::Add_Day()
 
 		if (user_start_work > user_end_work)
 		{
-			//continue;
+			cout << "Error!\nTry again!\n";
+			continue;
 		}
 
 		double local_hourly_wage = parameters_in_file.hourly_wage;
@@ -216,5 +222,25 @@ void Job::Add_Day()
 		}
 
 	} while (true);
-	
+}
+
+void Job::Save_in_File()
+{
+	string path_out = "F:\\My programs in C++\\Salary_calculation\\Work.txt";
+	/*cout << "Enter the path where you want to save the file:\n";
+	cin >> path_out;*/
+
+	ofstream fout(path_out);
+
+	if (!fout)
+	{
+		throw runtime_error("Error opening file for writing");
+	}
+
+	for (const auto& element : array_day)
+	{
+		fout << element.date << ' ' << element.start_work << ' ' << element.end_work << ' ' << element.number_hours_at_work << ' ' << element.earned_in_day << '\n';
+	}
+
+	fout.close();
 }

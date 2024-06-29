@@ -12,6 +12,7 @@ int main()
 		my_job.Show_Job();
 		my_job.Add_Day();
 		my_job.Show_Job();
+		my_job.Save_in_File();
 	}
 	catch (const std::exception& e)
 	{
