@@ -30,4 +30,6 @@ public:
 	Job();
 	void Show_Parameters();
 	void Show_Job();
+	void Add_Day();
+	bool is_Weekend(const string& date);
 };

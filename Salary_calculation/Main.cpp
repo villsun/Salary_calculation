@@ -10,6 +10,8 @@ int main()
 		Job my_job;
 		my_job.Show_Parameters();
 		my_job.Show_Job();
+		my_job.Add_Day();
+		my_job.Show_Job();
 	}
 	catch (const std::exception& e)
 	{
