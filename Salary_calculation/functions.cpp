@@ -244,3 +244,19 @@ void Job::Save_in_File()
 
 	fout.close();
 }
+
+void Job::Show_Salary()
+{
+	double salary = 0;
+	for (const auto& element : array_day)
+	{
+		salary += element.earned_in_day;
+	}
+
+	cout << "Slary = " << salary << endl;
+}
+
+Job::~Job()
+{
+	Save_in_File();
+}

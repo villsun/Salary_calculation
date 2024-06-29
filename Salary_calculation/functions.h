@@ -33,4 +33,6 @@ public:
 	void Add_Day();
 	bool is_Weekend(const string& date);
 	void Save_in_File();
+	void Show_Salary();
+	~Job();
 };
