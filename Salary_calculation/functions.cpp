@@ -106,7 +106,8 @@ bool Job::is_Weekend(const string& date)
 
 	const tm* time_out = localtime(&time_temp); // Функція localtime приймає часову мітку time_temp і перетворює її на місцевий час, представлений в структурі tm.
 	// Результат зберігається в time_out, яке є вказівником на структуру tm.
-// Перевіряємо, чи вдалося отримати місцевий час
+	// 
+	// Перевіряємо, чи вдалося отримати місцевий час
 	if (time_out == nullptr) {
 		throw runtime_error("Failed to convert time");
 	}
