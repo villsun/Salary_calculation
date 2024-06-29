@@ -84,7 +84,7 @@ void Job::Show_Job()
 	}
 }
 
-bool Job::is_Weekend(const string &date)
+bool Job::is_Weekend(const string& date)
 {
 	int day, month, year;
 	char dot;
@@ -105,8 +105,8 @@ bool Job::is_Weekend(const string &date)
 	}
 
 	const tm* time_out = localtime(&time_temp); // Функція localtime приймає часову мітку time_temp і перетворює її на місцевий час, представлений в структурі tm.
-												 // Результат зберігається в time_out, яке є вказівником на структуру tm.
-	// Перевіряємо, чи вдалося отримати місцевий час
+	// Результат зберігається в time_out, яке є вказівником на структуру tm.
+// Перевіряємо, чи вдалося отримати місцевий час
 	if (time_out == nullptr) {
 		throw runtime_error("Failed to convert time");
 	}
@@ -200,19 +200,19 @@ void Job::Add_Day()
 		day_temp.earned_in_day = user_number_hours_at_work * local_hourly_wage;
 
 		array_day.push_back(day_temp);
-		
+
 		char flag;
 		cout << "Do you want to continue?(y - yes, n - no)\n";
 		cin >> flag;
 
 		flag = tolower(flag);
 
-		if (flag != 'y' && flag!='n')
+		if (flag != 'y' && flag != 'n')
 		{
 			throw runtime_error("Invalid input");
 		}
 
-		if (flag=='y')
+		if (flag == 'y')
 		{
 			continue;
 		}
@@ -222,6 +222,18 @@ void Job::Add_Day()
 		}
 
 	} while (true);
+}
+
+void Job::Show_Salary()
+{
+	double salary = 0;
+	for (const auto& element : array_day)
+	{
+		salary += element.earned_in_day;
+	}
+
+	cout << "Slary = " << salary << endl;
+	cout << "Salary with tax = " << salary * ((100 - parameters_in_file.tax) / 100) << endl;
 }
 
 void Job::Save_in_File()
@@ -243,17 +255,8 @@ void Job::Save_in_File()
 	}
 
 	fout.close();
-}
 
-void Job::Show_Salary()
-{
-	double salary = 0;
-	for (const auto& element : array_day)
-	{
-		salary += element.earned_in_day;
-	}
-
-	cout << "Slary = " << salary << endl;
+	cout << "Done!\n";
 }
 
 Job::~Job()

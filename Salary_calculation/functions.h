@@ -32,7 +32,7 @@ public:
 	void Show_Job();
 	void Add_Day();
 	bool is_Weekend(const string& date);
-	void Save_in_File();
 	void Show_Salary();
+	void Save_in_File();
 	~Job();
 };
